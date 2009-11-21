@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#Rationale for forking away from [http://code.google.com/p/sexy-combo/ sexy-combo]
 
 = Introduction =
 
