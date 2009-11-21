@@ -1,13 +1,24 @@
-# Rationale for forking away from [http://code.google.com/p/sexy-combo/ sexy-combo]
+#summary Rationale for forking away from [http://code.google.com/p/sexy-combo/ sexy-combo]
 
 = Introduction =
 
-Add your content here.
+UFFDD is a fork from [http://code.google.com/p/sexy-combo/ sexy-combo].  This page explains the rationale.
 
 
 = Details =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+The main developer of UFFDD initally intended to enrich the sexy-combo for all its current users in a few important areas:
+
+* Performance with large lists
+* Improved event handling
+* Better iE6 z-index support
+
+During the development of these improvements, lots of features had to be dropped or changed.  The new plugin ended up not being compatible with the previous versions in a few ways: Skin CSS changed, plugin options changed and the tool is in effect completely different.  Some of the (potentially important) lost features include:
+
+* Multiple selection in a single combo (<select multiple="true" .. >)
+* Custom filter functions (UFFD uses a [http://en.wikipedia.org/wiki/Trie trie] implementation)
+* JSON support (might be reintroduced)
+* Custom callbacks (UFFDD triggers events on original select instead)
+
+
+
