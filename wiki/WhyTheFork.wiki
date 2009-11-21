@@ -1,4 +1,4 @@
-#Rationale for forking away from [http://code.google.com/p/sexy-combo/ sexy-combo]
+# Rationale for forking away from [http://code.google.com/p/sexy-combo/ sexy-combo]
 
 = Introduction =
 
