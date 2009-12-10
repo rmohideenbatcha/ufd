@@ -2,12 +2,12 @@
 
 = Introduction =
 
-UFFDD is a fork from [http://code.google.com/p/sexy-combo/ sexy-combo].  This page explains the rationale.
+The _Unobtrusive Fast-filter Dropdown_ (UFD) is a fork from [http://code.google.com/p/sexy-combo/ sexy-combo].  This page explains the rationale.
 
 
 = Details =
 
-The main developer of UFFDD initially intended to enrich the sexy-combo for all its current users in a few important areas:
+The main developer of UFD initially intended to enrich the sexy-combo for all its current users in a few important areas:
 
   * Performance with large lists
   * Improved event handling
@@ -18,12 +18,16 @@ During the development of these improvements, lots of features had to be dropped
 Some of the potentially important *removed* features include:
 
   * Multiple selection in a single combo (ie <select multiple .. >)
-  * Custom filter functions (UFFD uses a [http://en.wikipedia.org/wiki/Trie trie] implementation)
+  * Custom filter functions (UFD uses a [http://en.wikipedia.org/wiki/Trie trie] implementation)
   * Backwards compatibility with CSS skins
   * Many configuration options
   * JSON support (might be reintroduced)
-  * Custom callbacks (UFFDD triggers events on original select instead)
+  * Custom callbacks (UFD triggers events on original select instead)
+
+Some of these will be re-inserted in time, but the implementation and motivation has changed lots from sexy-combo.
 
 Sexy-combo also had some releases sponsored by a company, and removal of features that may be important to them seems unfair.  And finally, the name sexy-combo name may be a minus for the more conservative uses (corporate etc.).
 
-For these reasons, it seemed better to fork the project, hence the "Unobtrusive Fast Filter Drop Down" was born.  Why the fork not?
+For these reasons, it seemed better to fork the project, hence the "Unobtrusive Fast-filter Dropdown" was born.  
+
+Why the fork not?
