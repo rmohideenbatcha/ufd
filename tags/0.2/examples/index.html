@@ -1,0 +1,909 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us">
+
+<head>
+	<title>UFD @VERSION demonstration page</title>
+	
+	<!-- required dependency -->
+	<script type="text/javascript" src="jquery-1.3.2.min.js"></script>
+	<script type="text/javascript" src="ui.core.js"></script>
+	
+	<!--  if you want iE6 not to poke select boxes thru your dropdowns, you need ... -->
+	<script type="text/javascript" src="jquery.bgiframe.min.js"></script>
+	
+	<!-- Plugin source development location, distribution location: only 1 of 2 is there..	 -->
+	<script type="text/javascript" src="../src/jquery.ui.ufd.js"></script>
+	<script type="text/javascript" src="../jquery.ui.ufd.js"></script>
+	
+	<!--  base structure css  -->    
+	<link href="../css/ufd-base.css" rel="stylesheet" type="text/css" />
+	
+	<!--  sexy css skin -->    
+	<link href="../css/sexy/sexy.css" rel="stylesheet" type="text/css" />
+	
+	<!--  plain css skin  -->    
+	<link href="../css/plain/plain.css" rel="stylesheet" type="text/css" />
+	
+	<!--  custom css skin; basic pure CSS for you to build from  -->    
+	<link href="../css/custom/custom.css" rel="stylesheet" type="text/css" />
+	
+	
+	<script src="http://ui.jquery.com/applications/themeroller/themeswitchertool/" type="text/javascript"></script>
+	
+	<script type="text/javascript"> 
+		$(function(){ $('<div style="position: absolute; top: 20px; right: 10px;" />').appendTo('body').themeswitcher(); }); 
+	</script>	
+	
+	
+	<!-- 
+		Firebug lite for iE: 
+		Useful to see logging in iE. Can also create a DOM node matching the logSelector option.
+	
+	 -->
+		<script type='text/javascript' 
+	        src='http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js'></script>
+	
+	<style type="text/css">
+
+	#log {
+		height: 100px;
+		overflow: scroll;
+	}
+
+	</style>
+ </head>
+ <body>
+    
+	<h1>UFD base demonstration page</h1>
+    <div>
+		<h2>basic combo</h2>
+		<script type="text/javascript" >
+		$(function () {
+			$("#basic-combo").ufd({log:true});
+		});    
+	    </script>
+
+	    <p>The combobox below is a very basic example of using <em>UFD</em>.  </p>
+	    
+      <label for="basic-combo">Choose the state:</label><br />
+      <select id="basic-combo" name="basic-combo">
+        <option value="AL">Alabama</option>
+        <option value="AK">Alaska Alaska Alaska Alaska Alaska</option>
+        <option value="AZ">Arizona</option>
+        <option value="AR">Arkansas</option>
+        <option value="CA">California</option>
+        <option value="CO">Colorado</option>
+        <option value="CT">Connecticut</option>
+
+        <option value="DE">Delaware</option>
+        <option value="FL">Florida</option>
+        <option value="GA">Georgia</option>
+        <option value="HI">Hawaii</option>
+        <option value="ID">Idaho</option>
+        <option value="IL">Illinois</option>
+        <option value="IN">Indiana</option>
+        <option value="IA">Iowa</option>
+        <option value="KS">Kansas</option>
+
+        <option value="KY">Kentucky</option>
+        <option value="LA">Louisiana</option>
+        <option value="ME">Maine</option>
+        <option value="MD">Maryland</option>
+        <option value="MA">Massachusetts</option>
+        <option value="MI">Michigan</option>
+        <option value="MN">Minnesota</option>
+        <option value="MS">Mississippi</option>
+        <option value="MO">Missouri</option>
+
+        <option value="MT">Montana</option>
+        <option value="NE">Nebraska</option>
+        <option value="NV">Nevada</option>
+        <option value="NH">New Hampshire</option>
+        <option value="NJ">New Jersey</option>
+        <option value="NM">New Mexico</option>
+        <option value="NY">New York</option>
+        <option value="NC">North Carolina</option>
+        <option value="ND">North Dakota</option>
+
+        <option value="OH">Ohio</option>
+        <option value="OK">Oklahoma</option>
+        <option value="OR">Oregon</option>
+        <option value="PA">Pennsylvania</option>
+        <option value="RI">Rhode Island</option>
+        <option value="SC">South Carolina</option>
+        <option value="SD">South Dakota</option>
+        <option value="TN">Tennessee</option>
+        <option value="TX">Texas</option>
+
+        <option value="UT">Utah</option>
+        <option value="VT">Vermont</option>
+        <option value="VA">Virginia</option>
+        <option value="WA">Washington</option>
+        <option value="WV">West Virginia</option>
+        <option value="WI">Wisconsin</option>
+        <option value="WY">Wyoming</option>
+      </select>
+      <hr/>
+	</div>
+    
+    <div>
+		<h2>inside combo</h2>
+    
+		<script type="text/javascript" >
+		$(function () {
+			var insideCombo = $("#inside-combo");
+			var log = $("#insideLog").attr("tabindex", -10);
+			insideCombo.ufd({log:false});
+
+			$("#reload").click(function(){
+				insideCombo.ufd("populateFromMaster");
+			});	
+			
+
+			var logEvent = function(event){
+				log.prepend(event.type + "<br/>");
+			};
+			insideCombo.bind("blur focus change ", logEvent);
+		});    
+	    </script>
+	<style type="text/css">
+
+	#insideLog {
+		position: relative;
+		left: 400px;
+		overflow: scroll;
+		width: 200px;
+		height: 200px;
+		background: silver;
+	}
+
+	</style>
+
+	    <p>This is another basic combobox.  The events logged on the far right are events mounted 
+	    TO THE ORIGINAL SELECT BOX.  </p>
+	    <p>UFD triggers some but not all events so that original events take place: namely the focus, change and blur events.</p>
+	    
+	    
+	  <button id="reload">reload</button>  
+      <label for="inside-combo">Choose the state:</label><br />
+      <select id="inside-combo" name="inside-combo">
+        <option value="AL">Alabama</option>
+        <option value="AK">Alaska Alaska Alaska Alaska Alaska</option>
+        <option value="AZ">Arizona</option>
+        <option value="AR">Arkansas</option>
+        <option value="CA">California</option>
+        <option value="CO">Colorado</option>
+        <option value="CT">Connecticut</option>
+
+        <option value="DE">Delaware</option>
+        <option value="FL">Florida</option>
+        <option value="GA">Georgia</option>
+        <option value="HI">Hawaii</option>
+        <option value="ID">Idaho</option>
+        <option value="IL">Illinois</option>
+        <option value="IN">Indiana</option>
+        <option value="IA">Iowa</option>
+        <option value="KS">Kansas</option>
+
+        <option value="KY">Kentucky</option>
+        <option value="LA">Louisiana</option>
+        <option value="ME">Maine</option>
+        <option value="MD">Maryland</option>
+        <option value="MA">Massachusetts</option>
+        <option value="MI">Michigan</option>
+        <option value="MN">Minnesota</option>
+        <option value="MS">Mississippi</option>
+        <option value="MO">Missouri</option>
+
+        <option value="MT">Montana</option>
+        <option value="NE">Nebraska</option>
+        <option value="NV">Nevada</option>
+        <option value="NH">New Hampshire</option>
+        <option value="NJ">New Jersey</option>
+        <option value="NM">New Mexico</option>
+        <option value="NY">New York</option>
+        <option value="NC">North Carolina</option>
+        <option value="ND">North Dakota</option>
+
+        <option value="OH">Ohio</option>
+        <option value="OK">Oklahoma</option>
+        <option value="OR">Oregon</option>
+        <option value="PA">Pennsylvania</option>
+        <option value="RI">Rhode Island</option>
+        <option value="SC">South Carolina</option>
+        <option value="SD">South Dakota</option>
+        <option value="TN">Tennessee</option>
+        <option value="TX">Texas</option>
+
+        <option value="UT">Utah</option>
+        <option value="VT">Vermont</option>
+        <option value="VA">Virginia</option>
+        <option value="WA">Washington</option>
+        <option value="WV">West Virginia</option>
+        <option value="WI">Wisconsin</option>
+        <option value="WY">Wyoming</option>
+      </select>
+      <div id="insideLog"></div>
+      <hr/>
+	</div>
+    
+    
+    <div >
+		<h2>width control</h2>
+		<script type="text/javascript" >
+		$(function () {
+			$("select.sizeDemo1").ufd({minimumSize: 20});
+			$("select.sizeDemo2").ufd({log: false});
+			$("select.sizeDemo3").ufd({manualWidth: 300});
+		});    
+	    </script>
+
+	    <p>Sizing defaults to autosize.  UFD sets the exact same width as the master select, unless the original is below the "minWidth" option, or manualWidth is set.</p>
+	  <label>Below minimum size</label>  
+      <select class="sizeDemo1">
+        <option value=""></option>
+      </select>
+      <br/>
+	  <label>match original width (autosize)</label>  
+      <select class="sizeDemo2">
+        <option value="AL">Alabamaramapajamasbananas</option>
+      </select>
+      <br/>
+	  <label>manualWidth</label>  
+      <select class="sizeDemo3">
+        <option value="AL">Alabama</option>
+      </select>
+      <br/>
+	<hr/>
+	</div>
+    
+    <div>
+    	<h2>Free text</h2>
+    	
+    	
+		<script type="text/javascript" >
+		
+		$(document).ready(function () {
+			$("#freetext-combo").ufd( {submitFreeText:true, log: false} );
+		});    
+
+
+		$(this).click(function () {
+			$("#freetext-combo").ufd({submitFreeText:true, log: false});
+		});    
+
+
+		
+		
+	    </script>
+	    
+	    
+	    
+	    
+
+	    <p>The combobox below allows freetext, submitting the text back using the original selects' name. All events are still propagated back to master (including attempt to set if matched) even though it has been renamed (suffixed).</p>
+	    
+      <label for="freetext-combo">Choose the state:</label><br />
+      <select id="freetext-combo" name="basic-freetext">
+        <option value="AL">Alabama</option>
+        <option value="AK">Alaska Alaska Alaska Alaska Alaska</option>
+        <option value="AZ">Arizona</option>
+        <option value="AR">Arkansas</option>
+        <option value="CA">California</option>
+        <option value="CO">Colorado</option>
+        <option value="CT">Connecticut</option>
+
+        <option value="DE">Delaware</option>
+        <option value="FL">Florida</option>
+        <option value="GA">Georgia</option>
+        <option value="HI">Hawaii</option>
+        <option value="ID">Idaho</option>
+        <option value="IL">Illinois</option>
+        <option value="IN">Indiana</option>
+        <option value="IA">Iowa</option>
+        <option value="KS">Kansas</option>
+
+        <option value="KY">Kentucky</option>
+        <option value="LA">Louisiana</option>
+        <option value="ME">Maine</option>
+        <option value="MD">Maryland</option>
+        <option value="MA">Massachusetts</option>
+        <option value="MI">Michigan</option>
+        <option value="MN">Minnesota</option>
+        <option value="MS">Mississippi</option>
+        <option value="MO">Missouri</option>
+
+        <option value="MT">Montana</option>
+        <option value="NE">Nebraska</option>
+        <option value="NV">Nevada</option>
+        <option value="NH">New Hampshire</option>
+        <option value="NJ">New Jersey</option>
+        <option value="NM">New Mexico</option>
+        <option value="NY">New York</option>
+        <option value="NC">North Carolina</option>
+        <option value="ND">North Dakota</option>
+
+        <option value="OH">Ohio</option>
+        <option value="OK">Oklahoma</option>
+        <option value="OR">Oregon</option>
+        <option value="PA">Pennsylvania</option>
+        <option value="RI">Rhode Island</option>
+        <option value="SC">South Carolina</option>
+        <option value="SD">South Dakota</option>
+        <option value="TN">Tennessee</option>
+        <option value="TX">Texas</option>
+
+        <option value="UT">Utah</option>
+        <option value="VT">Vermont</option>
+        <option value="VA">Virginia</option>
+        <option value="WA">Washington</option>
+        <option value="WV">West Virginia</option>
+        <option value="WI">Wisconsin</option>
+        <option value="WY">Wyoming</option>
+      </select>
+      <hr/>
+	</div>
+
+    <div>
+    	<h2>Skins; disable/enable</h2>
+		<script type="text/javascript" >
+		$(function () {
+			var s1 = $("#skin1-combo").ufd({skin:"sexy"});
+			var s2 = $("#skin2-combo").ufd({skin:"plain"});
+			var s3 = $("#skin3-combo").ufd({skin:"custom"});
+
+
+			var disabled = false;
+			
+			$("#disableToggle").bind("click", function() {
+					if(disabled){
+						s1.ufd("undisable");
+						s2.ufd("undisable");
+						s3.ufd("undisable");
+					} else {
+						s1.ufd("disable");
+						s2.ufd("disable");
+						s3.ufd("disable");
+					}
+					disabled = !disabled;
+				});
+			
+		});    
+	    </script>
+
+	    <p>The combobox below allows freetext, submitting the text back using the original selects' name. All events are still propagated back to master (including attempt to set if matched) even though it has been renamed (suffixed).</p>
+	   
+	   <button id="disableToggle" type="button">Toggle disabled</button><br/>
+	    
+      <label for="skin1-combo">Choose the state:</label><br />
+      <select id="skin1-combo" name="skin1-combo">
+        <option value="AL">Alabama</option>
+        <option value="AK">Alaska</option>
+        <option value="AZ">Arizona</option>
+        <option value="AR">Arkansas</option>
+        <option value="CA">California</option>
+        <option value="CO">Colorado</option>
+        <option value="CT">Connecticut</option>
+     </select>
+      <br/>
+      <label for="skin2-combo">Choose the state:</label><br />
+      <select id="skin2-combo" name="skin2-combo">
+        <option value="DE">Delaware</option>
+        <option value="FL">Florida</option>
+        <option value="GA">Georgia</option>
+        <option value="HI">Hawaii</option>
+        <option value="ID">Idaho</option>
+        <option value="IL">Illinois</option>
+        <option value="IN">Indiana</option>
+        <option value="IA">Iowa</option>
+        <option value="KS">Kansas</option>
+      </select>
+      <br/>
+      <label for="skin3-combo">Choose the state:</label><br />
+      <select id="skin3-combo" name="skin3-combo">
+        <option value="KY">Kentucky</option>
+        <option value="LA">Louisiana</option>
+        <option value="ME">Maine</option>
+        <option value="MD">Maryland</option>
+        <option value="MA">Massachusetts</option>
+        <option value="MI">Michigan</option>
+        <option value="MN">Minnesota</option>
+        <option value="MS">Mississippi</option>
+        <option value="MO">Missouri</option>
+      </select>
+      <br/>
+
+      <hr/>
+	</div>
+      
+
+      
+    <div>
+    	<h2>zIndex correction on iE6</h2>
+		<script type="text/javascript" >
+		$(function () {
+			$("#zindex").ufd();
+		});    
+	    </script>
+
+	    <p>The combobox works over select input, working around the iE6 zindex problem using bgiframe.</p>
+	    
+	<br/>
+	<select><option>Example</option></select>
+	<br/>
+	<select><option>Example</option></select>
+	<br/>
+	<select><option>Example</option></select>
+	<br/>
+	<select><option>Example</option></select>
+	<br/>
+	<select><option>Example</option></select>
+	<br/>
+    	    
+	    
+      <label for="zindex">Choose the state:</label><br />
+      <select id="zindex" name="zindex">
+        <option value="AL">Alabama</option>
+        <option value="AK">Alaska Alaska Alaska Alaska Alaska</option>
+        <option value="AZ">Arizona</option>
+        <option value="AR">Arkansas</option>
+        <option value="CA">California</option>
+        <option value="CO">Colorado</option>
+        <option value="CT">Connecticut</option>
+
+        <option value="DE" selected="selected">Delaware</option>
+        <option value="FL">Florida</option>
+        <option value="GA">Georgia</option>
+        <option value="HI">Hawaii</option>
+        <option value="ID">Idaho</option>
+        <option value="IL">Illinois</option>
+        <option value="IN">Indiana</option>
+        <option value="IA">Iowa</option>
+        <option value="KS">Kansas</option>
+
+        <option value="KY">Kentucky</option>
+        <option value="LA">Louisiana</option>
+        <option value="ME">Maine</option>
+        <option value="MD">Maryland</option>
+        <option value="MA">Massachusetts</option>
+        <option value="MI">Michigan</option>
+        <option value="MN">Minnesota</option>
+        <option value="MS">Mississippi</option>
+        <option value="MO">Missouri</option>
+
+        <option value="MT">Montana</option>
+        <option value="NE">Nebraska</option>
+        <option value="NV">Nevada</option>
+        <option value="NH">New Hampshire</option>
+        <option value="NJ">New Jersey</option>
+        <option value="NM">New Mexico</option>
+        <option value="NY">New York</option>
+        <option value="NC">North Carolina</option>
+        <option value="ND">North Dakota</option>
+
+        <option value="OH">Ohio</option>
+        <option value="OK">Oklahoma</option>
+        <option value="OR">Oregon</option>
+        <option value="PA">Pennsylvania</option>
+        <option value="RI">Rhode Island</option>
+        <option value="SC">South Carolina</option>
+        <option value="SD">South Dakota</option>
+        <option value="TN">Tennessee</option>
+        <option value="TX">Texas</option>
+
+        <option value="UT">Utah</option>
+        <option value="VT">Vermont</option>
+        <option value="VA">Virginia</option>
+        <option value="WA">Washington</option>
+        <option value="WV">West Virginia</option>
+        <option value="WI">Wisconsin</option>
+        <option value="WY">Wyoming</option>
+      </select>
+		<br/>
+		<select><option>Example</option></select>
+		<br/>
+		<select><option>Example</option></select>
+		<br/>
+		<select><option>Example</option></select>
+		<br/>
+		<select><option>Example</option></select>
+		<br/>
+		<select><option>Example</option></select>
+		<br/>
+		<hr/>
+	</div>
+    
+ 
+    
+    <div>
+		<h2>Performance test</h2>
+		
+		<script type="text/javascript" >
+		$(function () {
+			
+			$("#charButton").click(function(){
+
+
+				var charCount = $("#charCount").val(); //should be a number
+
+				var start = new Date().getTime();
+
+				var nodeBuilder = [];
+				nodeBuilder.push("<select>");
+
+				for (;charCount > 0; charCount--){
+					var rs = randomString();
+					nodeBuilder.push('<option>' + rs + "</option>");
+				} 			
+				nodeBuilder.push("</select>");
+
+				var pc = $("#perfContainer");
+				pc.html(nodeBuilder.join(''));
+
+				var mid = new Date().getTime();
+				pc.children(":first").ufd({log:true});
+				var end = new Date().getTime();
+				
+				alert("Randoms strings in a select built in " + (mid-start) + 
+						" msec.  UFD constructed from select in: " +  (end-mid) + " msec.");
+				
+				return;
+			});
+
+			
+			function randomString(length) {
+			    var chars = 'abcdefghilmnoprstu'.split('');
+			    var vowels = 'aeiou'.split('');
+			    
+			    if (! length) {
+			        length = Math.floor(Math.random() * (chars.length-1) ) + 1;
+			    }
+			    
+			    var str = '';
+			    for (var i = 0; i < length; i++) {
+				    if(i%2 == 0) str += vowels[Math.floor(Math.random() * vowels.length)];
+				    else str += chars[Math.floor(Math.random() * chars.length)];
+			    }
+			    return str;
+			}
+			
+		});    
+	    </script>
+<a name="test" id="test">
+	    <p>Test...</p>
+	    </a>
+	    Number of random strings:
+	    <input type="text" id="charCount" value="2000"/>
+	    
+	    <button type="button" id="charButton">Click to build a new ufd</button>
+	    <br/>
+	    <br/>
+	    <br/>
+
+	    <div id="perfContainer">SELECT-PLACEHOLDER</div>
+      <hr/>
+	</div>
+        
+    
+    
+    <div>
+    <h2>Original</h2>
+    <p>
+    All this combos originally looked like:
+    </p>
+    <p>
+      <label for="selectbox">Choose the state:</label><br />
+      <select id="selectbox" name="selectbox"  size="1">
+        <option value="AL">Alabama</option>
+        <option value="AK">Alaska</option>
+        <option value="AZ">Arizona</option>
+        <option value="AR">Arkansas</option>
+        <option value="CA">California</option>
+        <option value="CO">Colorado</option>
+        <option value="CT">Connecticut</option>
+
+        <option value="DE">Delaware</option>
+        <option value="FL">Florida</option>
+        <option value="GA">Georgia</option>
+        <option value="HI">Hawaii</option>
+        <option value="ID">Idaho</option>
+        <option value="IL">Illinois</option>
+        <option value="IN">Indiana</option>
+        <option value="IA">Iowa</option>
+        <option value="KS">Kansas</option>
+
+        <option value="KY">Kentucky</option>
+        <option value="LA">Louisiana</option>
+        <option value="ME">Maine</option>
+        <option value="MD">Maryland</option>
+        <option value="MA">Massachusetts</option>
+        <option value    </div>="MI">Michigan</option>
+        <option value="MN">Minnesota</option>
+        <option value="MS">Mississippi</option>
+        <option value="MO">Missouri</option>
+
+        <option value="MT">Montana</option>
+        <option value="NE">Nebraska</option>
+        <option value="NV">Nevada</option>
+        <option value="NH">New Hampshire</option>
+        <option value="NJ">New Jersey</option>
+        <option value="NM">New Mexico</option>
+        <option value="NY">New York</option>
+        <option value="NC">North Carolina</option>
+        <option value="ND">North Dakota</option>
+
+        <option value="OH">Ohio</option>
+        <option value="OK">Oklahoma</option>
+        <option value="OR">Oregon</option>
+        <option value="PA">Pennsylvania</option>
+        <option value="RI">Rhode Island</option>
+        <option value="SC">South Carolina</option>
+        <option value="SD">South Dakota</option>
+        <option value="TN">Tennessee</option>
+        <option value="TX">Texas</option>
+
+        <option value="UT">Utah</option>
+        <option value="VT">Vermont</option>
+        <option value="VA">Virginia</option>
+        <option value="WA">Washington</option>
+        <option value="WV">West Virginia</option>
+        <option value="WI">Wisconsin</option>
+        <option value="WY">Wyoming</option>
+      </select>
+    </p>      
+    <hr/>
+    
+    </div>
+    
+    
+	<h2>#Log</h2>                        
+    <div id="log" style="margin-top: 50px;"></div>   
+    <hr/>
+    
+    <div>
+
+	<h2>jquery UI test</h2>
+    This is a dummy test to see if/how to use the jQuery UI; still not as nice as I'd like, and you will need 
+    to select a skin at the top right for this to render OK.    
+    
+    
+    	code inspired from http://jquery-ui.googlecode.com/svn/branches/labs/autocomplete/tests/static/autocomplete/autocomplete.html
+    </div>
+    
+    <script type="text/javascript">
+	    $(function(){
+			$('.ufd-widget button, #left .ufd-results li').hover(
+					function(){ $(this).addClass('ui-state-hover'); },
+					function(){ $(this).removeClass('ui-state-hover'); }
+			);
+			$('#right .ufd-results li').hover(
+					function(){ $(this).addClass('hover'); },
+					function(){ $(this).removeClass('hover'); }
+			);
+		}); 
+	</script>
+
+<style type="text/css">
+
+#left {
+position: absolute;
+left: 10px;
+}
+
+#right {
+position: absolute;
+left: 300px;
+}
+.ufd-widget {
+	width: 190px;
+}
+
+.ufd-results {
+	top: 30px;
+	left: 0px;
+	width: 190px; /* code will override */
+}
+.ufd-widget input {
+	width: 158px;
+}
+
+/* end temp */
+
+.ufd-widget, 
+.ufd-widget input, 
+.ufd-widget button, 
+.ufd-results ul {
+	white-space: nowrap;
+	margin: 0;
+	padding: 0;
+}
+
+.ufd-widget {
+	display: -moz-inline-stack;
+	display: inline-block;
+	vertical-align: bottom;
+	position: relative;
+	overflow: hidden;
+}
+
+.ufd-widget input {
+	border: 0px;
+	margin: 0px;
+	padding: 0.2em;
+}
+
+.uddf-widget input.disabled {
+	color: graytext;
+}
+
+.ufd-widget input,
+.ufd-widget button {
+	position: relative;
+	float: left;
+}
+
+.ufd-widget button {
+	border: 0;
+	display: block;
+	width: auto;
+	height: 100%;
+}
+
+
+
+.ufd-results {
+	position: absolute;
+	height: 200px;
+	max-height: 200px;
+	overflow: auto;
+	overflow-x: hidden;
+	overflowX: hidden;
+}	
+
+
+.ufd-results ul,
+.ufd-results li {
+	list-style: none;
+	display: block;
+	width: 100%;
+}
+
+.ufd-results li {
+	border: 0px;
+	text-decoration: none;
+	padding: 0em 0.2em;
+	overflow: hidden;
+	font-weight: normal !important;
+}
+
+.ufd-results li strong {
+	font-weight: bold;
+}
+
+#right .ufd-results li {
+	color: menutext;
+	background-color: menu;
+}
+
+
+#right .ufd-results li.hover {
+	color: highlighttext;
+	background-color: highlight;
+}
+
+
+#left .ufd-results .ui-state-hover {
+	border: 0px !important;
+}
+
+
+</style> 
+    
+    <div id="left">
+    <div id="" class="ufd-widget ui-widget ui-widget-content ui-corner-top ">
+    	<select class="ui-helper-hidden">
+    		<option />
+    		<option />
+    		<option />
+    	</select>
+		<input name="" class="ui-corner-tl" value="" aria-autocomplete="list" aria-haspopup="true" aria-owns="ufd-instance" type="text"/>
+		<button class="ui-corner-tr ui-state-default">
+			<span class="ui-icon ui-icon-triangle-1-s ">Drop down</span>
+		</button>
+	
+    </div>
+
+   	<div class="ufd-results ui-widget ui-widget-content" style="z-index: 10;">
+		<ul id="" role="menu" aria-activedescendant="ui-active-menuitem">
+			<li class="ui-menu-item" role="menuitem"><strong>A</strong>berdeen</li>
+			<li class="ui-menu-item" role="menuitem" 
+														  id="ui-active-menuitem"><strong>A</strong>d<strong>a</strong></a></li>
+			<li class="ui-menu-item" role="menuitem"><strong>A</strong>d<strong>a</strong>msville</li>
+			<li class="ui-menu-item" role="menuitem"><strong>A</strong>ddyston</li>
+			<li class="ui-menu-item" role="menuitem"><strong>A</strong>delphi</li>
+			<li class="ui-menu-item" role="menuitem"><strong>A</strong>den<strong>a</strong></li>
+			<li class="ui-menu-item" role="menuitem"><strong>A</strong>dri<strong>a</strong>n</li>
+			<li class="ui-menu-item" role="menuitem"><strong>A</strong>kron</li>
+			<li class="ui-menu-item" role="menuitem"><strong>A</strong>lb<strong>a</strong>ny</li>
+			<li class="ui-menu-item" role="menuitem"><strong>A</strong>lex<strong>a</strong>ndri<strong>a</strong></li>
+			<li class="ui-menu-item" role="menuitem"><strong>A</strong>lger</li>
+			<li class="ui-menu-item" role="menuitem"><strong>A</strong>lledoni<strong>a</strong></li>
+			<li class="ui-menu-item" role="menuitem"><strong>A</strong>lli<strong>a</strong>nce</li>
+			<li class="ui-menu-item" role="menuitem"><strong>A</strong>lph<strong>a</strong></li>
+			<li class="ui-menu-item" role="menuitem"><strong>A</strong>lv<strong>a</strong>d<strong>a</strong></li>
+			<li class="ui-menu-item" role="menuitem"><strong>A</strong>lvordton</li>
+			<li class="ui-menu-item" role="menuitem"><strong>A</strong>m<strong>a</strong>nd<strong>a</strong></li>
+			<li class="ui-menu-item" role="menuitem"><strong>A</strong>meli<strong>a</strong></li>
+			<li class="ui-menu-item" role="menuitem"><strong>A</strong>mesville</li>
+		</ul>
+	</div>
+   </div> 
+   
+       <div id="right">
+    <div id="" class="ufd-widget ui-widget ui-widget-header ui-corner-top ">
+    	<select class="ui-helper-hidden">
+    		<option />
+    		<option />
+    		<option />
+    	</select>
+		<input name="" class="ui-corner-tl" value="" aria-autocomplete="list" aria-haspopup="true" aria-owns="ufd-instance" type="text"/>
+		<button class="ui-corner-tr ui-state-default">
+			<span class="ui-icon ui-icon-triangle-1-s ">Drop down</span>
+		</button>
+	
+    </div>
+
+   	<div class="ufd-results ui-widget ui-widget-content" style="z-index: 10;">
+		<ul id="" role="menu" aria-activedescendant="ui-active-menuitem">
+			<li class="" role="menuitem"><strong>A</strong>berdeen</li>
+			<li class="" role="menuitem" 
+														  id="ui-active-menuitem"><strong>A</strong>d<strong>a</strong></a></li>
+			<li class="" role="menuitem"><strong>A</strong>d<strong>a</strong>msville</li>
+			<li class="" role="menuitem"><strong>A</strong>ddyston</li>
+			<li class="" role="menuitem"><strong>A</strong>delphi</li>
+			<li class="" role="menuitem"><strong>A</strong>den<strong>a</strong></li>
+			<li class="" role="menuitem"><strong>A</strong>dri<strong>a</strong>n</li>
+			<li class="" role="menuitem"><strong>A</strong>kron</li>
+			<li class="" role="menuitem"><strong>A</strong>lb<strong>a</strong>ny</li>
+			<li class="" role="menuitem"><strong>A</strong>lex<strong>a</strong>ndri<strong>a</strong></li>
+			<li class="" role="menuitem"><strong>A</strong>lger</li>
+			<li class="" role="menuitem"><strong>A</strong>lledoni<strong>a</strong></li>
+			<li class="" role="menuitem"><strong>A</strong>lli<strong>a</strong>nce</li>
+			<li class="" role="menuitem"><strong>A</strong>lph<strong>a</strong></li>
+			<li class="" role="menuitem"><strong>A</strong>lv<strong>a</strong>d<strong>a</strong></li>
+			<li class="" role="menuitem"><strong>A</strong>lvordton</li>
+			<li class="" role="menuitem"><strong>A</strong>m<strong>a</strong>nd<strong>a</strong></li>
+			<li class="" role="menuitem"><strong>A</strong>meli<strong>a</strong></li>
+			<li class="" role="menuitem"><strong>A</strong>mesville</li>
+		</ul>
+	</div>
+   </div> 
+   
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    
+    
+    <hr/>
+    
+    
+    
+  </body>
+</html> 
