@@ -1,4 +1,5 @@
 #summary Rationale for forking away from Sexy-combo.
+#labels Featured
 
 = Introduction =
 
