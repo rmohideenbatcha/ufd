@@ -67,10 +67,12 @@ You can get a reference to your UFD widget by simply re-selecting the master sel
 
 <script type="text/javascript">
   $("#demo").ufd();
- $("#demo").ufd("changeOptions");
- $("#demo").ufd("destroy");
-
+  $("#demo").ufd("changeOptions");
+  $("#demo").ufd("destroy");
 </script>
+
+
+}}}
 
 Available commands are currently:
 
@@ -79,6 +81,3 @@ Available commands are currently:
   * undisable
   * destroy (* not 100% yet)
   * getCurrentTextValue
-
-
-}}}
