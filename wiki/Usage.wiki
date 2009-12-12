@@ -1,4 +1,5 @@
 #summary Installation and usage of UFD
+#labels Featured
 
 = Installation =
 
