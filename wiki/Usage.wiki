@@ -1,16 +1,36 @@
-#summary One-sentence summary of this page.
+#Installation and usage
 
-= Introduction =
+= Installation =
 
-Add your content here.
+You will need to link to a couple of script files:
+  * jQuery-x.x.js 
+  * jQuery ui.core.js
+  * jquery.ui.ufd.js
 
+In addition, you will want 2+ CSS files; one base file, and 1 per skin.
+  * ufd-base.css
+  * plain.css
 
-= Details =
+See the example pages for a demonstration.
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+= Usage =
+
+Like all jQuery plugins and widgets, you select your target nodes with a css selector, then pass options, thusly:
+
+{{{
+
+<select id="demo">
+  <option>only 1</option>
+</select>
+
+<script type="text/javascript">
+  $("#demo").ufd({option1:value, ...});
+</script>
+
+}}}
+
+The optional option object can have any of the settings listed below:
+
 
 {{{
 options: {
@@ -33,5 +53,6 @@ options: {
 	manualWidth: null, //override selectbox width; set explicit width
 	delayFilter: ($.support.style) ? 1 : 150, // msec to wait before starting filter (or get cancelled); long for IE 
 	delayYield: 1, // msec to yield for 2nd 1/2 of filter re-entry cancel; 1 seems adequate to achieve yield
-	zIndexPopup: 101 // dropdown z-index}
+	zIndexPopup: 101 // dropdown z-index
+}
 }}}
