@@ -1,4 +1,4 @@
-#Installation and usage
+#summary Installation and usage of UFD
 
 = Installation =
 
@@ -55,4 +55,30 @@ options: {
 	delayYield: 1, // msec to yield for 2nd 1/2 of filter re-entry cancel; 1 seems adequate to achieve yield
 	zIndexPopup: 101 // dropdown z-index
 }
+}}}
+
+You can get a reference to your UFD widget by simply re-selecting the master select again; eg.
+
+{{{
+
+<select id="demo">
+  <option>only 1</option>
+</select>
+
+<script type="text/javascript">
+  $("#demo").ufd();
+ $("#demo").ufd("changeOptions");
+ $("#demo").ufd("destroy");
+
+</script>
+
+Available commands are currently:
+
+  * changeOptions
+  * disable
+  * undisable
+  * destroy (* not 100% yet)
+  * getCurrentTextValue
+
+
 }}}
