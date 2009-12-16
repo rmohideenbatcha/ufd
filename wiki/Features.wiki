@@ -1,4 +1,5 @@
 #summary UFD Features
+#labels Featured
 
 == Features ==
 
