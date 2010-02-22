@@ -15,16 +15,17 @@ UFD has a few important design features:
   * z-index managed for iE6 support using bgiframe and root-node dropdown location.
   * Optional submission of free text: copy the master 'name' attribute to the text input, and suffix the master name.
 
-New on 0.5-SNAPSHOT
-  * ~~Emphasis on tagged text match~~ in trunk.  See [http://ufd.googlecode.com/svn/trunk/examples/index.html unstable development] demo page.
+New on 0.5-SNAPSHOT (trunk)
+  * Infix search.
+  * Emphasis on tagged text match.
   * jQuery UI skin support.
+See [http://ufd.googlecode.com/svn/trunk/examples/index.html trunk unstable development] demo page.
 
 
 == Limitations ==
 
 Sounds great, but what about the _missing_ features that you might want to know about for your situation:
 
-  * no infix search: but there are plans to implement.
   * no <OPTGROUP ..> support.  Possible to implement.
   * no complex per-item content, such as multiple images or HTML.  A single block <LI .. > with background image, hover/active class and CSS is all you get - performance is more important sorry.  
   * no support for multiple selection, i.e. <SELECT multiple .. >.  (_thetoolman_) doesn't recommend them as a good UI widget: ctrl + click for form entry? no thanks.  Use checkboxes or some better metaphor!
