@@ -8,7 +8,7 @@ This bookmarklet will allow you to try out UFD on any web page you like with no 
 
 Drag the link below on to your bookmark bar, or copy the location and paste in target websites' URL bar.  
 
-<wiki:gadget url="http://ufd.googlecode.com/svn/trunk/src/bookmarkletGaget.xml" height="200" border="0" /> 
+<wiki:gadget url="http://ufd.googlecode.com/svn/trunk/src/bookmarkletGaget.xml" height="20" width="200" border="0" /> 
 
 = known limitations =
  * No iFrame support
