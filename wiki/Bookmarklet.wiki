@@ -2,7 +2,7 @@
 
 = Introduction =
 
-UNDER CONSTRUCTION
+UNDER CONSTRUCTION; BOOKMARKLET NOT working on some pages (including this one!  Google has some funky javascript clashing I think)
 
 This bookmarklet will allow you to try out UFD on any web page you like with no installation!  The bookmarklet script will automatically inject all the needed script and CSS, and wrap all (non-multi) select drop-downs.
 
