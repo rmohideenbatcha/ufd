@@ -1,14 +1,20 @@
 #summary Bookmarklet for simple trial of UFD on your page!
 
-= Introduction =
+= BOOKMARKLET STILL IN BETA =
 
-UNDER CONSTRUCTION; BOOKMARKLET NOT working on some pages (including this one!  Google has some funky javascript clashing I think)
+= Introduction =
 
 This bookmarklet will allow you to try out UFD on any web page you like with no installation!  The bookmarklet script will automatically inject all the needed script and CSS, and wrap all (non-multi) select drop-downs.
 
-Drag the link below on to your bookmark bar, or copy the location and paste in target websites' URL bar.  
+Simply drag the link below on to your bookmark bar, visit the target website, then select the bookmarklet.
 
 <wiki:gadget url="http://ufd.googlecode.com/svn/trunk/bookmarklet/bookmarkletGaget.xml" height="20" width="200" border="0" /> 
 
+The script will automatically detect and use existing jQuery if already on page, and will apply itself to all visible, non-multi select tags, i.e.
 
 `jQuery("select:not([multiple]):visible").ufd();`
+
+= Known issues =
+
+ * CSS styles on target pages may bleed into plugin, causing slight render weirdness.  For example, this page has left and right padding on a span tag if placed where the "search" select is.  This causes the UFD to render with extra padding.  It still functions correctly, of course.  Try it out!
+ * Sites using old versions of jQuery may not work - the script detects an existing jQuery and attempts to use it. 
