@@ -6,7 +6,9 @@
 
 This bookmarklet will allow you to try out UFD on any web page you like with no installation!  The bookmarklet script will automatically inject all the needed script and CSS, and wrap all (non-multi) select drop-downs.
 
-Simply drag the link below on to your bookmark bar, visit the target website, then select the bookmarklet.
+Simply drag the link below on to your bookmark bar, visit the target website, then select the bookmarklet. 
+
+(If you want this in iE6, you need to create the bookmarklet manually.  Create a new bookmark to anywhere, and replace the bookmarks' URL with the link URL/href below.  You can get this with a _right click -> copy shortcut_ on the link.)
 
 <wiki:gadget url="http://ufd.googlecode.com/svn/trunk/bookmarklet/bookmarkletGaget.xml" height="20" width="200" border="0" /> 
 
