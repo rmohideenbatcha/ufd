@@ -4,7 +4,7 @@
 = Installation =
 
 You will need to link to a couple of script files:
-  * jQuery-x.x.js 
+  * jQuery-x.x.js (>=1.3.0)
   * jQuery ui.core.js
   * jquery.ui.ufd.js
 
