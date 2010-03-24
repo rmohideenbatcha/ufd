@@ -25,7 +25,7 @@ Some of the potentially important *removed* features include:
   * JSON support (might be reintroduced)
   * Custom callbacks (UFD triggers events on original select instead)
 
-Some of these will be re-inserted in time, but the implementation and motivation has changed lots from sexy-combo.
+Some of these may be re-inserted in time, but the implementation and motivation has changed lots from sexy-combo.
 
 Sexy-combo also had some releases sponsored by a company, and removal of features that may be important to them seems unfair.  And finally, the name sexy-combo name may be a minus for the more conservative uses (corporate etc.).
 
