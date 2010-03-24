@@ -1,4 +1,5 @@
-#summary Bookmarklet for simple trial of UFD on your page!
+#summary Bookmarklet for no-setup trial of UFD on _any_ page.
+#labels Featured
 
 = Introduction =
 
