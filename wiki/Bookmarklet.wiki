@@ -16,7 +16,7 @@ The script will apply itself to all *visible*, *non-multi* select tags, i.e.
 
 `jQuery("select:not([multiple]):visible").ufd();`
 
-If you want this in iE6, you need to create the bookmarklet manually.  Create a new bookmark to anywhere, and replace the bookmarks' URL with the link URL/href below.  You can get this with a _right click -> copy shortcut_ on the link.
+If you want this in iE, you need to create the bookmarklet manually.  Create a new bookmark to anywhere, and replace the bookmarks' URL with the link URL/href below.  You can get this with a _right click -> copy shortcut_ on the link.
 
 
 = Known issues =
