@@ -1,7 +1,5 @@
 #summary Bookmarklet for simple trial of UFD on your page!
 
-= BOOKMARKLET STILL IN BETA =
-
 = Introduction =
 
 This bookmarklet will allow you to try out UFD on any web page you like with no installation!  The bookmarklet script will automatically inject all the needed script and CSS, and wrap all (non-multi) select drop-downs.  
@@ -13,7 +11,7 @@ Simply drag the link below on to your bookmark bar, visit the target website, th
 
 <wiki:gadget url="http://ufd.googlecode.com/svn/trunk/bookmarklet/bookmarkletGaget.xml" height="20" width="200" border="0" /> 
 
-The script will automatically detect and use existing jQuery if already on page, and will apply itself to all visible, non-multi select tags, i.e.
+The script will automatically detect and use existing jQuery if already on page, and will apply itself to all *visible*, *non-multi* select tags, i.e.
 
 `jQuery("select:not([multiple]):visible").ufd();`
 
@@ -22,5 +20,5 @@ If you want this in iE6, you need to create the bookmarklet manually.  Create a 
 
 = Known issues =
 
- * CSS styles on target pages may bleed into plugin, causing slight render weirdness.  For example, this page has left and right padding on a span tag if placed where the "search" select is.  This causes the UFD to render with extra padding.  It still functions correctly, of course.  Try it out!
- * Sites using versions of jQuery < 1.3.0 will not work, as the script detects an existing jQuery and attempts to use it, but the plugin needs 1.3.0+. 
+ * In a few situations, the CSS styles on target pages may bleed into plugin elements, causing slight render weirdness.  For example, when the search select above gets UFDed, it gets extra left and right border width due to the wrapping span tag inheriting padding in that location.  It still functions correctly, of course.  Try it out!
+ 
