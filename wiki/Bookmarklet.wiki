@@ -12,16 +12,16 @@ Unless you are using Internet Explorer, simply drag the link below on to your bo
 
 <wiki:gadget url="http://ufd.googlecode.com/svn/trunk/bookmarklet/bookmarkletGaget.xml" height="20" width="200" border="0" /> 
 
-The script will apply itself to all *visible*, *non-multi* select tags, i.e.
+The script will apply itself to all *non-multi* select tags, i.e.
 
-`jQuery("select:not([multiple]):visible").ufd();`
+`jQuery("select:not([multiple])").ufd();`
 
 
 
 = Known issues =
 
  * In a few situations, the CSS styles on target pages may bleed into plugin elements, causing slight render weirdness.  For example, when the search select above gets UFDed, it gets extra left and right border width due to the wrapping span tag inheriting padding in that location.  It still functions correctly, of course.  Try it out!
- * The first load occasionally runs without the CSS fully loaded, causing the measurements to fail and the UFD to appear with no button or similar render issues.  Reload and it will come from cache and load correctly.  TODO improve!
+  * iE seems to fail sometimes, still investigating.
  * Quirks mode changes the box model on a few elements, causing render bugs similar to the CSS bleed in. Corrected in supported browsers with (vendor-prefix)box-sizing.  
 
  
