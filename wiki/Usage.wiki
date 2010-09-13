@@ -89,5 +89,5 @@ Available commands are currently:
   * changeOptions
   * disable
   * undisable
-  * destroy (* not 100% yet)
+  * destroy
   * getCurrentTextValue
