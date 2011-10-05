@@ -43,9 +43,9 @@ $.widget(widgetName, {
 		this.overflowCSS = this.options.allowLR ? "overflow" : "overflowY";
 		var inputName = this.options.prefix + this.selectbox.attr("name");
 		var inputId = ""; // none unless master select has one
+		var hadFocus = (this.selectbox[0] === document.activeElement); 
 
 		var sbId = this.selectbox.attr("id");
-
 		if(sbId) {
 			inputId = this.options.prefix + sbId ;
 			this.labels = $("label[for='" + sbId + "']").attr("for", inputId);
@@ -94,6 +94,7 @@ $.widget(widgetName, {
 
 		this._populateFromMaster();
 		this._initEvents();
+		if(hadFocus) this.input.focus();
 
 		// this._timingMeasure(false, "init");
 	},
@@ -997,7 +998,7 @@ $.widget(widgetName, {
 
 	destroy: function() {
 		// this.log("called destroy");
-
+		var hadFocus = (this.input && this.input[0] === document.activeElement); 
 		if(this.selectIsWrapped) { //unwrap
 			this.wrapper.before(this.selectbox);
 		}
@@ -1025,6 +1026,9 @@ $.widget(widgetName, {
 		} else { // 1.8+
 			$.Widget.prototype.destroy.apply(this, arguments); // default destroy
 		}
+		
+		if(this.selectbox && hadFocus) this.selectbox.focus();
+		
 		this.selectbox = null;
 		this._encodeDom = null;
 		
