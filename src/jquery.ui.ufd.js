@@ -612,6 +612,7 @@ $.widget(widgetName, {
 		// this._timingMeasure(true, "kids");
 		var theLiSet = this.list.get(0).getElementsByTagName('LI'); // much faster array then .childElements !
 		this.listItems = $(theLiSet);
+		this.selectedLi = null;
 
 		loopCountdown = theLiSet.length;
 		index = 0;
@@ -625,7 +626,6 @@ $.widget(widgetName, {
 		
 		this.visibleCount = theLiSet.length;
 		this.setInputFromMaster();
-		this.selectedLi = null;
 		
 		this.dimensioned = false;
 		this.setDimensions();
@@ -722,15 +722,11 @@ $.widget(widgetName, {
 
 	setInputFromMaster: function() {
 		var selectNode = this.selectbox.get(0);
-		var val = "";
-		try {
-			val = selectNode.options[selectNode.selectedIndex].text;
-			//this.selectedLi = this.listItems.get(selectNode.selectedIndex);
-		} catch(e) {
-			//must have no items!BP
+		var selectIndex = selectNode.selectedIndex;
+		if (selectIndex > -1) {
+			this.input.val(selectNode.options[selectIndex].text);
+			this.selectedLi = this.listItems.get(selectIndex);
 		}
-		//this.log("setting input to: " + val);
-		this.input.val(val);
 	},
 
 	revertSelected: function() {
