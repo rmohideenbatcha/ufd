@@ -1000,8 +1000,10 @@ $.widget(widgetName, {
 		}
 		
         this._moveAttrs(this.input, this.selectbox, this.options.moveAttrs); // restore moved attributes
-		this.labels.attr("for", this.selectbox.attr("id")); //revert label 'for' attributes.
-		this.labels = null;
+        if(this.labels) { //revert label 'for' attributes.
+			this.labels.attr("for", this.selectbox.attr("id")); 
+			this.labels = null;
+        }
 		
 		this.selectbox.unbind("change." + widgetName);
 		$(document).unbind("click." + widgetName, this._myDocClickHandler);
