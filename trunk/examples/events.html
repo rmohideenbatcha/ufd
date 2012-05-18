@@ -17,9 +17,8 @@
 	
 	<!-- required dependency -->
 	<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
-<!-- 	<script type="text/javascript" src="js/ui.core.js"></script> -->
-	<script type="text/javascript" src="js/jquery-ui-1.8.js-off"></script>
 	<script type="text/javascript" src="js/ui.core.js"></script>
+	
 	<!--  if you want iE6 not to poke select boxes thru your dropdowns, you need ... -->
 	<script type="text/javascript" src="js/jquery.bgiframe.min.js"></script>
 	
@@ -62,7 +61,7 @@
 				log.prepend("event: " + event.type + "; masterVal: " + master.val() + "<br/>");
 			}; 
 
-			var masterEvent = function(event){
+			var jqMasterEvent = function(event){
 				log.prepend("jq-event: " + event.type + "; masterVal: " + master.val() + "<br/>");
 			}; 
 
@@ -74,7 +73,7 @@
 
 
 			// listen for events on master new skool
-			master.bind("blur focus change", masterEvent);
+			master.bind("blur focus change", jqMasterEvent);
 			
 			$("#destroy").bind("click", function() {
 				master.ufd("destroy");
