@@ -343,6 +343,8 @@ $.widget(widgetName, {
 	},
 
 	_triggerEventOnMaster: function(eventName) {
+		//this.selectbox.trigger(eventName); // we dont use jquery .trigger() as it doesnt fire handlers attached using raw JS :(
+		
 		if( document.createEvent ) { // good browsers
 			var evObj = document.createEvent('HTMLEvents');
 			evObj.initEvent( eventName, true, true );
@@ -350,6 +352,12 @@ $.widget(widgetName, {
 
 		} else if( document.createEventObject ) { // iE
 			this.selectbox.get(0).fireEvent("on" + eventName);
+			
+			// jQuery.event.special.<event> normalises naughty browsers from 1.4+, so jquery won't hear native events if its .setup() returns true; 
+			// currently only "change" returns true, so need to trigger by hand
+			if( !jQuery.support.changeBubbles && eventName == 'change' ){
+			    this.selectbox.change();
+			}
 		} 
 
 	},
