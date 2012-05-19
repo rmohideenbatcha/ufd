@@ -924,7 +924,7 @@ $.widget(widgetName, {
 			indexB = tritem.length;
 			count += indexB;
 			while(indexB--) { // duplicate match array
-				tritem[indexB].setAttribute($.ui.ufd.classAttr, classString);
+				tritem[indexB].className = classString; // here is the overwrite
 			}
 		}
 		// this._timingMeasure(false, "overwriteClass");
@@ -1229,7 +1229,6 @@ $.ui.ufd.getNewTrie = function(isCaseSensitive, isInfix){
 $.extend($.ui.ufd, {
 	version: "@VERSION",
 	getter: "", //for methods that are getters, not chainables
-	classAttr: (($.support.style) ? "class" : "className"),  // IE6/7 class attribute
 	
 	defaults: { // 1.7 default options location, see below
 		skin: "plain", // skin name 
