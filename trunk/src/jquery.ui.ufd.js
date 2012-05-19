@@ -355,7 +355,7 @@ $.widget(widgetName, {
 			
 			// jQuery.event.special.<event> normalises naughty browsers from 1.4+, so jquery won't hear native events if its .setup() returns true; 
 			// currently only "change" returns true, so need to trigger by hand
-			if( !jQuery.support.changeBubbles && eventName == 'change' ){
+			if( (jQuery.support.changeBubbles === false)  && eventName == 'change' ){
 			    this.selectbox.change();
 			}
 		} 
