@@ -43,7 +43,7 @@ $.widget(widgetName, {
 		this.overflowCSS = this.options.allowLR ? "overflow" : "overflowY";
 		var inputName = this.options.prefix + this.selectbox.attr("name");
 		var inputId = ""; // none unless master select has one
-		var hadFocus = (this.selectbox[0] === document.activeElement); 
+		this.internalFocus = (this.selectbox[0] === document.activeElement); 
 		
 		// workaround for firefox autocomplete weirdness, see http://code.google.com/p/ufd/issues/detail?id=25
 		this.origACAttr = this.selectbox.attr("autocomplete"); // store original setting for destroy
@@ -98,8 +98,10 @@ $.widget(widgetName, {
 
 		this._populateFromMaster();
 		this._initEvents();
-		if(hadFocus) this.input.focus();
-
+		if(this.internalFocus){
+			this._focusDisplay();
+			this.input.focus();
+		}
 		// this._timingMeasure(false, "init");
 	},
 
@@ -325,14 +327,18 @@ $.widget(widgetName, {
 		// this.log("real input focus");
 		this.internalFocus = true;
 		this._triggerEventOnMaster("focus");
-		this.wrapper.addClass(this.options.css.skin + "-" + this.options.css.inputFocus); // for ie6 support
-		this.input.addClass(this.options.css.inputFocus);
-		this.button.addClass(this.options.css.inputFocus);
+		this._focusDisplay();
 		this.filter(true); //show all
 		this.inputFocus();
 		if (this.options.showListOnFocus) {
 			this.showList();
 		}
+	},
+	
+	_focusDisplay: function(){
+		this.wrapper.addClass(this.options.css.skin + "-" + this.options.css.inputFocus); // for ie6 support
+		this.input.addClass(this.options.css.inputFocus);
+		this.button.addClass(this.options.css.inputFocus);
 	},
 
 	realLooseFocusEvent: function() {
@@ -646,6 +652,12 @@ $.widget(widgetName, {
 		// this._timingMeasure(false, "tidy");
 
         this._moveAttrs(this.selectbox, this.input, this.options.moveAttrs);
+        
+		if(this.internalFocus) setTimeout(function(){ 
+			// ie8 bug seems to need breather for focus to happen after manipulation: http://stackoverflow.com/questions/1326993/jquery-focus-sometimes-not-working-in-ie8
+			self.input.focus();			
+		}, 1);
+
 	},
 
 	/*
@@ -999,14 +1011,13 @@ $.widget(widgetName, {
 		return zIndex + 1;
 	},
 
-	changeOptions: function() {
+	changeOptions: function() {	
 		// this.log("changeOptions");
 		this._populateFromMaster();
 	},		
 
 	destroy: function() {
 		// this.log("called destroy");
-		var hadFocus = (this.input && this.input[0] === document.activeElement); 
 		if(this.selectIsWrapped) { //unwrap
 			this.wrapper.before(this.selectbox);
 		}
@@ -1043,7 +1054,7 @@ $.widget(widgetName, {
 			$.Widget.prototype.destroy.apply(this, arguments); // default destroy
 		}
 		
-		if(this.selectbox && hadFocus) this.selectbox.focus();
+		if(this.selectbox && this.internalFocus) this.selectbox.focus();
 		
 		this.selectbox = null;
 		this._encodeDom = null;

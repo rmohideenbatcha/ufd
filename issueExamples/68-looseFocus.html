@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="../src/jquery.ui.ufd.js"></script>
+        
+	<!--  css for demonstrations / examples  -->    
+	<link href="../examples/example.css" rel="stylesheet" type="text/css" />
+
+	<!--  base structure css  -->    
+	<link href="../css/ufd-base.css" rel="stylesheet" type="text/css" />
+	
+	<!--  plain css skin  -->    
+	<link href="../css/plain/plain.css" rel="stylesheet" type="text/css" />
+
+        <script>
+            $(function () {
+                $("select#one").focus().ufd();
+                
+            	var ufd = $("select#two").ufd();
+                
+                ufd.focus(function(){
+                	ufd.ufd("changeOptions");
+                });
+                
+            });
+        </script>
+    </head>
+    <body>
+        <form>
+        <select id="one">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+        </select>
+        <br/>
+         <input type="text" id="text" value="tab off me, and try to type in the UFD" style="width:300px"/>
+        <br/>
+        <select id="two">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+        </select>
+        </form>
+    </body>
+</html>
