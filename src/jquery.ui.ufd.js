@@ -44,6 +44,10 @@ $.widget(widgetName, {
 		var inputName = this.options.prefix + this.selectbox.attr("name");
 		var inputId = ""; // none unless master select has one
 		var hadFocus = (this.selectbox[0] === document.activeElement); 
+		
+		// workaround for firefox autocomplete weirdness, see http://code.google.com/p/ufd/issues/detail?id=25
+		this.origACAttr = this.selectbox.attr("autocomplete"); // store original setting for destroy
+		this.selectbox.attr("autocomplete", "off");
 
 		var sbId = this.selectbox.attr("id");
 		if(sbId) {
@@ -1012,7 +1016,13 @@ $.widget(widgetName, {
 			this.labels.attr("for", this.selectbox.attr("id")); 
 			this.labels = null;
         }
-		
+        
+        if(this.origACAttr) {
+        	this.selectbox.attr("autocomplete", this.origAutoCompAttr);
+        } else {
+        	this.selectbox.removeAttr("autocomplete");
+        }
+        
 		this.selectbox.unbind("change." + widgetName);
 		$(document).unbind("click." + widgetName, this._myDocClickHandler);
 		if(this._myPollId) clearInterval(this._myPollId );
