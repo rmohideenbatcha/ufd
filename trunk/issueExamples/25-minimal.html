@@ -9,7 +9,7 @@
 				var wrapper= $("span");
 				var input = $("input");
 				
-            	input.val("enabled: " + !selectbox.filter("[disabled]").length);
+            	input.val("disabled: " + !!selectbox.filter("[disabled]").length);
 
 				selectbox.attr("disabled", "disabled");
 				wrapper.append(selectbox);
@@ -21,7 +21,7 @@
     <h1>Issue 25:</h1>
     <p> 
     This demonstrates a minimal version of the weird firefox reload -> disable bug reported at <a href="http://code.google.com/p/ufd/issues/detail?id=25">http://code.google.com/p/ufd/issues/detail?id=25</a>.  
-    First load and any full refreshes will report "enabled: true", but softer refresh (eg F5) will report "enabled: false" in the text box.  It is not a UFD bug, as this non-UFD case demonstrates.
+    First load and any full refreshes will report "disabled: false", but softer refresh (eg F5) will report "disabled: true" in the text box.  It is not a UFD bug, as this non-UFD case demonstrates.
     </p>
     <p>
     This is a weird autocomplete bug, and the only known way around it known so far is to include autocomplete="off" on the select.  
