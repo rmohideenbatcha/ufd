@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+
+        <script>
+            $(function () {
+				var selectbox = $("select");
+				var wrapper= $("span");
+				var input = $("input");
+				
+            	input.val("enabled: " + !selectbox.filter("[disabled]").length);
+
+				selectbox.attr("disabled", "disabled");
+				wrapper.append(selectbox);
+				selectbox.removeAttr("disabled");
+            });
+        </script>
+    </head>
+    <body>
+    <h1>Issue 25:</h1>
+    <p> 
+    This demonstrates a minimal version of the weird firefox reload -> disable bug reported at <a href="http://code.google.com/p/ufd/issues/detail?id=25">http://code.google.com/p/ufd/issues/detail?id=25</a>.  
+    First load and any full refreshes will report "enabled: true", but softer refresh (eg F5) will report "enabled: false" in the text box.  It is not a UFD bug, as this non-UFD case demonstrates.
+    </p>
+    <p>
+    This is a weird autocomplete bug, and the only known way around it known so far is to include autocomplete="off" on the select.  
+    Firefox seems to get confused with the disabled field being moved, and it seems to need the input between the select tag and the span its moved to for it to occur.
+    UFD will be patched to add this attribute, but be aware that the bug may bite in other form fields!
+    </p>
+    
+        <form>
+		        <select>
+		            <option>1</option>
+		            <option>2</option>
+		            <option>3</option>
+		            <option>4</option>
+		            <option>5</option>
+		        </select>
+		        
+				<input type="text"/>
+		        
+				<span>
+				</span>
+        </form>
+
+    </body>
+</html>
