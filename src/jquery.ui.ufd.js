@@ -93,7 +93,7 @@ $.widget(widgetName, {
 		if(!this.options.listWidthFixed){ 
 			this.listWrapper.css({"width": 50, "min-width": 100});
 			this.options.listWidthFixed = (this.listWrapper.width() < 100);
-			this.listWrapper.css({"width": null, "min-width": null});
+			this.listWrapper.css({"width": '', "min-width": ''});
 		}
 
 		this._populateFromMaster();
@@ -129,7 +129,7 @@ $.widget(widgetName, {
 				return; //special key
 			}
 			
-			switch (key) { //stop default behivour for these events
+			switch (key) { //stop default behaviour for these events
 				case keyCodes.HOME:
 				case keyCodes.END:
 					if(self.options.homeEndForCursor) return; //no action except default
