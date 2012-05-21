@@ -256,28 +256,33 @@ $.widget(widgetName, {
 		});
 		
 		this.listScroll.bind("mouseover mouseout click", function(e) {
-			if ( "LI" == e.target.nodeName.toUpperCase() ) {
+			var target = e.target;
+			if( "EM" == target.nodeName.toUpperCase() ) { 
+				//we found an emphasised item; use parent LI
+				target = target.parentNode;
+			}
+			if ( "LI" == target.nodeName.toUpperCase() ) {
 				if(self.setActiveTimeout) { //cancel pending selectLI -> active
 					clearTimeout(self.setActiveTimeout);
 					self.setActiveTimeout == null;
 				}
 				if ("mouseout" == e.type) {
-					$(e.target).removeClass(css.liActive);
+					$(target).removeClass(css.liActive);
 					self.setActiveTimeout = setTimeout(function() { 
 						$(self.selectedLi).addClass(css.liActive); 
 					}, self.options.delayYield);
 
 				} else if ("mouseover" == e.type) { 
-					if (self.selectedLi != e.target) { 
+					if (self.selectedLi != target) { 
 						$(self.selectedLi).removeClass(css.liActive);
 					}
-					$(e.target).addClass(css.liActive);
+					$(target).addClass(css.liActive);
 
 				} else { //click
 					self.stopEvent(e); //prevent bubbling to document onclick binding etc
-					var value = $.trim($(e.target).text());
+					var value = $.trim($(target).text());
 					self.input.val(value);
-					self.setActive(e.target);
+					self.setActive(target);
 					if(self.tryToSetMaster() ) {
 						self.hideList();
 						self.filter(true); //show all
