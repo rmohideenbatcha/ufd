@@ -381,11 +381,15 @@ $.widget(widgetName, {
 	// methods
 
 	inputFocus: function() {
-		// this.log("inputFocus: restore input component focus");
-		this.input.focus();
+		//this.log("inputFocus: restore input component focus");
+		var input = this.input;
+		input.focus();
 
 		if (this.getCurrentTextValue().length) {
-			this.selectAll();    	
+			//this.log("Select All");
+			setTimeout(function() { // workaround for webkit issue, UFD issue #59
+				input.get(0).select();
+			}, 1);
 		}			
 	},
 
@@ -978,11 +982,6 @@ $.widget(widgetName, {
 		this.input.removeClass(this.css.inputDisabled);
 		this.input.removeAttr("disabled");
 		this.selectbox.removeAttr("disabled");
-	},
-
-	selectAll: function() {
-		// this.log("Select All");
-		this.input.get(0).select();
 	},
 
 	getDropdownContainer: function() {
